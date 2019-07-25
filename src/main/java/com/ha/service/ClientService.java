@@ -26,4 +26,14 @@ public class ClientService {
 		repository.save(model);
 		return null;
 	}
+	
+	@Transactional
+	public void getClientModel(Long id) {
+		ClientModel client = repository.findById(id).get();
+		String type = client.getGranttypes().get(0).getGranttype();
+		System.out.println(type);
+		
+		String scope = client.getScopes().get(0).getScope();
+		System.out.println(scope);
+	}
 }

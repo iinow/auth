@@ -25,21 +25,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //		super.configure(auth);
 //		auth.jdbcAuthentication();
-		auth.jdbcAuthentication()
-			.dataSource(dataSource)
-			.usersByUsernameQuery("select username, password from users where username=?")
-			.authoritiesByUsernameQuery("select username, authority from users where username=?")
-			.and();
+//		auth.jdbcAuthentication()
+//			.dataSource(dataSource)
+//			.usersByUsernameQuery("select username, password from users where username=?")
+//			.authoritiesByUsernameQuery("select username, authority from users where username=?")
+//			.and();
 //			.usersByUsernameQuery();
-//		auth.inMemoryAuthentication()
-//	        .withUser("user")
-//	        .password("{noop}password")
-//	        .roles("USER")
-//	        .and()
-//	        .withUser("admin")
-//	        .password("{noop}password")
-//	        .roles("USER", "ADMIN")
-//	        .and();
+		auth.inMemoryAuthentication()
+	        .withUser("user")
+	        .password("{noop}password")
+	        .roles("USER")
+	        .and()
+	        .withUser("admin")
+	        .password("{noop}password")
+	        .roles("USER", "ADMIN")
+	        .and();
 	}
 
 	@Override

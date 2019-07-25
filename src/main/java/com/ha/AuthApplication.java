@@ -51,41 +51,41 @@ public class AuthApplication {
 	
 	@PostConstruct
 	public void init() {
-		UserModel user = new UserModel();
-		user.setName("joon");
-		user.setPassword("password");
-		user.setAuthority("ADMIN");
-		repository.save(user);
-		
-		ClientModel client = new ClientModel();
-		client.setClientid("clientid");
-		client.setSecret("secret");
-		clientService.add(client);
-		
-		ClientGrantTypeModel granttype1 = new ClientGrantTypeModel();
-		granttype1.setClient(client);
-		granttype1.setGranttype("password");
-		granttypeRepository.save(granttype1);
-		
-		ClientGrantTypeModel granttype2 = new ClientGrantTypeModel();
-		granttype2.setClient(client);
-		granttype2.setGranttype("authorization_code");
-		granttypeRepository.save(granttype2);
-		
-		client.setGranttypes(Arrays.asList(granttype1, granttype2));
-		
-		ClientScopeModel scope1 = new ClientScopeModel();
-		scope1.setClient(client);
-		scope1.setScope("all");
-		clientScopeRepository.save(scope1);
-	
-		client.setScopes(Arrays.asList(scope1));
-		
-		clientService.add(client);
-		
-		ClientModel client1 = clientRepository.findById((long) 1).get();
-		System.out.println(client1.getGranttypes().get(0).getGranttype());
-		System.out.println(client1.getGranttypes().get(0).getId());
+//		UserModel user = new UserModel();
+//		user.setName("joon");
+//		user.setPassword("password");
+//		user.setAuthority("ADMIN");
+//		repository.save(user);
+//		
+//		ClientModel client = new ClientModel();
+//		client.setClientid("clientid");
+//		client.setSecret("secret");
+//		clientService.add(client);
+//		
+//		ClientGrantTypeModel granttype1 = new ClientGrantTypeModel();
+//		granttype1.setClient(client);
+//		granttype1.setGranttype("password");
+//		granttypeRepository.save(granttype1);
+//		
+//		ClientGrantTypeModel granttype2 = new ClientGrantTypeModel();
+//		granttype2.setClient(client);
+//		granttype2.setGranttype("authorization_code");
+//		granttypeRepository.save(granttype2);
+//		
+//		client.setGranttypes(Arrays.asList(granttype1, granttype2));
+//		
+//		ClientScopeModel scope1 = new ClientScopeModel();
+//		scope1.setClient(client);
+//		scope1.setScope("all");
+//		clientScopeRepository.save(scope1);
+//	
+//		client.setScopes(Arrays.asList(scope1));
+//		
+//		clientService.add(client);
+//		
+//		ClientModel client1 = clientRepository.findById((long) 1).get();
+//		System.out.println(client1.getGranttypes().get(0).getGranttype());
+//		System.out.println(client1.getGranttypes().get(0).getId());
 	}
 	
 	@GetMapping("/t1/test")
