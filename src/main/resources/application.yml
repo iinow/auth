@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: vanilla
+  datasource:
+    url: jdbc:mysql://remotemysql.com:3306/oIDj79884W
+    username: oIDj79884W
+    password: OmzIpgbOkP
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: embedded
+    platform: oauth2
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+#    properties:
+#      hibernate.format_sql: true
+#  security:
+#    user:
+#      password: password
+#management:
+#  context_path: /admin
+#security:
+#  oauth2:
+#    resource:
+#      filter-order: 3
+logging:
+  level:
+    org.springframework.security: WARN
