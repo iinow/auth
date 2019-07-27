@@ -6,4 +6,5 @@ import com.ha.entity.ClientModel;
 
 public interface ClientRepository extends JpaRepository<ClientModel, Long>{
 
+	ClientModel findOneByClientid(String clientId);
 }

@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.ha.auth.AuthUserDetailService;
+
 /**
  * 
  * @author BISHOP
@@ -19,7 +21,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private DataSource dataSource;
+	private AuthUserDetailService authUserDetailService;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -31,26 +33,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			.authoritiesByUsernameQuery("select username, authority from users where username=?")
 //			.and();
 //			.usersByUsernameQuery();
-		auth.inMemoryAuthentication()
-	        .withUser("user")
-	        .password("{noop}password")
-	        .roles("USER")
-	        .and()
-	        .withUser("admin")
-	        .password("{noop}password")
-	        .roles("USER", "ADMIN")
-	        .and();
+		auth.userDetailsService(authUserDetailService);
+//		auth.inMemoryAuthentication()
+//	        .withUser("user")
+//	        .password("{noop}password")
+//	        .roles("USER")
+//	        .and()
+//	        .withUser("admin")
+//	        .password("{noop}password")
+//	        .roles("USER", "ADMIN")
+//	        .and();
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		// TODO Auto-generated method stub
 		super.configure(web);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// TODO Auto-generated method stub
-		super.configure(http);
+//		http.authorizeRequests()
+//			.antMatchers("")
+//			.hasAnyRole("USER", "ADMIN")
+//			.and()
+//			.formLogin();
+		http.authorizeRequests()
+			.antMatchers("/t2/test")
+			.authenticated();
 	}
 }

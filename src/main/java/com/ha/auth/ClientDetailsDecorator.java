@@ -1,67 +1,82 @@
 package com.ha.auth;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 
+import com.ha.entity.ClientModel;
+import com.ha.entity.UserModel;
+
 public class ClientDetailsDecorator implements ClientDetails {
 	private static final long serialVersionUID = -308715146948531116L;
 
+	private ClientModel client;
+	
+	public ClientDetailsDecorator(@NotNull(message = "must not be null") ClientModel client) {
+		this.client = client;
+	}
+	
 	@Override
 	public String getClientId() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.client.getClientid();
 	}
 
 	@Override
 	public Set<String> getResourceIds() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isSecretRequired() {
-		// TODO Auto-generated method stub
-		return false;
+		return client.getSecret() != null && client.getSecret().isEmpty();
 	}
 
 	@Override
 	public String getClientSecret() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.client.getSecret();
 	}
 
 	@Override
 	public boolean isScoped() {
-		// TODO Auto-generated method stub
-		return false;
+		return !client.getScopes().isEmpty();
 	}
 
 	@Override
 	public Set<String> getScope() {
-		// TODO Auto-generated method stub
-		return null;
+		return client.getScopes()
+			.stream()
+			.map(scope -> scope.getScope())
+			.collect(Collectors.toSet());
 	}
 
 	@Override
 	public Set<String> getAuthorizedGrantTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return client.getGranttypes()
+				.stream()
+				.map(granttype -> granttype.getGranttype())
+				.collect(Collectors.toSet());
 	}
 
 	@Override
 	public Set<String> getRegisteredRedirectUri() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(
+				(GrantedAuthority) ()-> "ROLE_USER",
+				(GrantedAuthority) ()-> "ROLE_ADMIN",
+				(GrantedAuthority) ()-> "ROLE_ANONYMOUS");
+//		return null;
 	}
 
 	@Override

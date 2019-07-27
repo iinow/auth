@@ -17,7 +17,10 @@ spring:
 #      hibernate.format_sql: true
 #  security:
 #    user:
-#      password: password
+#      name: admin
+#      password: admin
+#      roles:
+#      - read
 #management:
 #  context_path: /admin
 #security:

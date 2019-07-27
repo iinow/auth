@@ -6,4 +6,5 @@ import com.ha.entity.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, Long>{
 
+	public UserModel findByName(String name);
 }

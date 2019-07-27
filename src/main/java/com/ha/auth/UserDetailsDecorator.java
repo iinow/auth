@@ -1,6 +1,11 @@
 package com.ha.auth;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,25 +17,30 @@ public class UserDetailsDecorator implements UserDetails {
 
 	private UserModel user;
 	
-	public UserDetailsDecorator(UserModel user) {
+//	@PersistenceContext
+	
+	public UserDetailsDecorator(@NotNull(message = "must not be null de!") UserModel user) {
+//		Hibernate.initialize(user);
 		this.user = user;
 	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(user.getGrants())
+			.orElseGet(() -> Collections.emptyList())
+			.stream()
+			.map(grant -> grant.getGrantType())
+			.map(grant -> (GrantedAuthority) () -> grant)
+			.collect(Collectors.toList());
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return user.getName();
 	}
 

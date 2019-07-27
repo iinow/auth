@@ -17,9 +17,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//			.antMatchers("/t1/test")
+//			.authenticated();
 		http.authorizeRequests()
-			.antMatchers("/t1/test")
-			.authenticated();
+	        .antMatchers("/v1/token").permitAll()
+	        .anyRequest().authenticated();
+		// v1/token 의 endpoint 로 토큰을 발급받고 그외는 권한을 적용시킨다.
 	}
 	
 }

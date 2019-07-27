@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ha.entity.ClientGrantTypeModel;
 import com.ha.entity.ClientModel;
 import com.ha.entity.ClientScopeModel;
+import com.ha.entity.UserGrantAuthModel;
 import com.ha.entity.UserModel;
 import com.ha.repository.ClientGrantTypeRepository;
 import com.ha.repository.ClientRepository;
 import com.ha.repository.ClientScopeRepository;
 import com.ha.repository.UserRepository;
 import com.ha.service.ClientService;
+import com.ha.service.UserGrantAuthService;
 
 @SpringBootApplication
 //@EnableResourceServer
@@ -45,6 +47,10 @@ public class AuthApplication {
 
 	@Autowired
 	ClientRepository clientRepository;
+	
+	@Autowired
+	UserGrantAuthService userGrantAuthService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AuthApplication.class, args);
 	}
@@ -86,6 +92,11 @@ public class AuthApplication {
 //		ClientModel client1 = clientRepository.findById((long) 1).get();
 //		System.out.println(client1.getGranttypes().get(0).getGranttype());
 //		System.out.println(client1.getGranttypes().get(0).getId());
+		
+//		UserGrantAuthModel auth = new UserGrantAuthModel();
+//		auth.setGrantType("ROLE_ADMIN");
+//		
+//		userGrantAuthService.addUserGrantAuthModel(auth, "joon");
 	}
 	
 	@GetMapping("/t1/test")

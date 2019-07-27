@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import com.ha.repository.ClientRepository;
 
 @Service
 public class ClientService {
+	
 	@Autowired
 	EntityManagerFactory factory;
 
@@ -35,5 +37,14 @@ public class ClientService {
 		
 		String scope = client.getScopes().get(0).getScope();
 		System.out.println(scope);
+	}
+	
+	@Transactional
+	public ClientModel findByClientId(String clientId) {
+		ClientModel client = repository.findOneByClientid(clientId);
+		client.getGranttypes().get(0);
+		client.getScopes().get(0);
+//		Hibernate.initialize(client);
+		return client;
 	}
 }
