@@ -8,7 +8,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ha.entity.ClientModel;
+import com.ha.entity.client.ClientModel;
 import com.ha.repository.ClientRepository;
 
 @Service

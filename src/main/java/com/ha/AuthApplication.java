@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ha.entity.ClientGrantTypeModel;
-import com.ha.entity.ClientModel;
-import com.ha.entity.ClientScopeModel;
 import com.ha.entity.UserGrantAuthModel;
 import com.ha.entity.UserModel;
+import com.ha.entity.client.ClientGrantTypeModel;
+import com.ha.entity.client.ClientModel;
+import com.ha.entity.client.ClientScopeModel;
 import com.ha.repository.ClientGrantTypeRepository;
 import com.ha.repository.ClientRepository;
 import com.ha.repository.ClientScopeRepository;

@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 
-import com.ha.entity.ClientModel;
 import com.ha.entity.UserModel;
+import com.ha.entity.client.ClientModel;
 
 public class ClientDetailsDecorator implements ClientDetails {
 	private static final long serialVersionUID = -308715146948531116L;

@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Service;
 
-import com.ha.entity.ClientModel;
+import com.ha.entity.client.ClientModel;
 import com.ha.service.ClientService;
 
 @Service
