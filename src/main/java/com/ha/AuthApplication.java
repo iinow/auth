@@ -8,6 +8,8 @@ import javax.websocket.ClientEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,7 @@ import com.ha.service.UserGrantAuthService;
 @SpringBootApplication
 //@EnableResourceServer
 @RestController
+@EnableCaching
 public class AuthApplication {
 	@Autowired
 	UserRepository repository;

@@ -3,6 +3,7 @@ package com.ha.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ha.entity.UserGrantAuthModel;
@@ -19,6 +20,7 @@ public class UserGrantAuthService {
 	private UserService userService;
 	
 	@Transactional
+//	@Cacheable(value = "usergrantauth", key = "#auth.grantType")
 	public Long addUserGrantAuthModel(UserGrantAuthModel auth) {
 		return repository.save(auth).getId();
 	}

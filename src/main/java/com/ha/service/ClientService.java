@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ha.entity.client.ClientModel;
@@ -21,15 +23,15 @@ public class ClientService {
 	private ClientRepository repository;
 	
 	@Transactional
+//	@Cacheable(value = "client", key = "#model.clientid")
 	public ClientModel add(ClientModel model) {
 //		EntityManager manager = factory.createEntityManager();
 //		manager.persist(model);
-		
-		repository.save(model);
-		return null;
+		return repository.save(model);
 	}
 	
 	@Transactional
+//	@CacheEvict(value = "client", key = "#id")
 	public void getClientModel(Long id) {
 		ClientModel client = repository.findById(id).get();
 		String type = client.getGranttypes().get(0).getGranttype();
@@ -40,6 +42,7 @@ public class ClientService {
 	}
 	
 	@Transactional
+//	@Cacheable(value = "client", key = "#clientId")
 	public ClientModel findByClientId(String clientId) {
 		ClientModel client = repository.findOneByClientid(clientId);
 		client.getGranttypes().get(0);

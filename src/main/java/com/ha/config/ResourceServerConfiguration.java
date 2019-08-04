@@ -21,7 +21,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 //			.antMatchers("/t1/test")
 //			.authenticated();
 		http.authorizeRequests()
-	        .antMatchers("/v1/token").permitAll()
+	        .antMatchers("/v1/token", "/t1/test").permitAll()
 	        .anyRequest().authenticated();
 		// v1/token 의 endpoint 로 토큰을 발급받고 그외는 권한을 적용시킨다.
 	}

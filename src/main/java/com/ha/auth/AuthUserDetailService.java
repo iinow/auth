@@ -17,6 +17,9 @@ public class AuthUserDetailService implements UserDetailsService {
 	@Autowired
 	private UserService service;
 
+	/**
+	 * redis ƒ≥ΩÃ¿ª «ÿ¡‡æﬂ«—¥Ÿ.
+	 * */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserModel u = Optional.ofNullable(service.findOneUserModel(username))
