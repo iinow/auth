@@ -1,6 +1,7 @@
 spring:
   application:
     name: vanilla
+    
   datasource:
     url: jdbc:mysql://remotemysql.com:3306/oIDj79884W
     username: oIDj79884W
@@ -8,6 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: embedded
     platform: oauth2
+    
   jpa:
     hibernate:
       ddl-auto: update
@@ -26,6 +28,10 @@ spring:
     redis:
       repositories:
         enabled: false
+        
+logging:
+  level:
+    org.springframework.security: WARN
     
 #    properties:
 #      hibernate.format_sql: true
@@ -46,12 +52,7 @@ spring:
 #security:
 #  oauth2:
 #    resource:
-#      token-info-uri: http://localhost/oauth/check_token
-logging:
-  level:
-    org.springframework.security: WARN
-    
-    
+#      token-info-uri: http://localhost/oauth/check_token    
 #-- 테스트코드
 #spring:
 #  redis:

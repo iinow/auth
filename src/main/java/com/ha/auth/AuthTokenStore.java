@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2RefreshToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -81,7 +82,8 @@ public class AuthTokenStore implements TokenStore {
         if (readAccessToken(token.getValue()) != null) {
             this.removeAccessToken(token);
         }
-        
+//        authentication.getOAuth2Request().getRequestParameters().get("username");
+        authentication.getUserAuthentication();
         UserModel user = userService.findOneUserModel(authentication.getName());	//-> authentication.getName() 이 ..clientId  로 오는데???
         ClientModel client = clientService.findByClientId(authentication.getOAuth2Request().getClientId());
         

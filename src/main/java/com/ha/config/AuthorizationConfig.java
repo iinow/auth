@@ -109,7 +109,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 //		endpoints.tokenStore(tokenStore) -- token 저장 공간
 //		super.configure(endpoints);
 //		endpoints.getTokenStore();
-		
+//		endpoints.
 		endpoints.tokenStore(tokenStore);
 	}
 	
