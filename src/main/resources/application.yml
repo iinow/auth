@@ -27,6 +27,12 @@ spring:
 #  oauth2:
 #    resource:
 #      filter-order: 3
+
+#/원격지 서버 토큰 유효성 검사
+#security:
+#  oauth2:
+#    resource:
+#      token-info-uri: http://localhost/oauth/check_token
 logging:
   level:
     org.springframework.security: WARN

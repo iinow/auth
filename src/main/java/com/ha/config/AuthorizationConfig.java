@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import com.ha.auth.AuthClientDetailService;
@@ -63,6 +64,16 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
      */
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//		security.checkTokenAccess("isAuthenticated()");
+//		security.checkTokenAccess("permitAll()");
+		//permitAll(), isAuthenticated() 차이 https://stackoverflow.com/questions/26750999/spring-security-oauth2-check-token-endpoint
+		//https://stackoverflow.com/questions/26250522/how-to-use-remotetokenservice 참조
+		security.tokenKeyAccess("permitAll()")
+        	.checkTokenAccess("isAuthenticated()");
+//		TODO: 원격지 서버 토큰 유효성 검사 해봐야함
+//		RemoteTokenServices remoteService = new RemoteTokenServices();
+//		remoteService.
+		//oauth 서버와 resource 서버가 분리 되었을 때 security.oauth2.resource
 		super.configure(security);
 	}
 

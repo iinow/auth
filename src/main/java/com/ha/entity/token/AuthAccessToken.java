@@ -3,15 +3,15 @@ package com.ha.entity.token;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +30,6 @@ import com.ha.entity.UserModel;
 import com.ha.entity.client.ClientModel;
 import com.ha.util.SerializableObjectConverter;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
@@ -58,7 +57,7 @@ public class AuthAccessToken implements Serializable, OAuth2AccessToken {
 	@JoinColumn(name = "refreshTokenId")
 	private AuthRefreshToken authRefreshToken;
 	
-	@OneToMany(mappedBy = "token")
+	@OneToMany(mappedBy = "token", fetch = FetchType.EAGER)
 	private List<AuthAccessTokenScopeModel> authAccessTokenScopes = new ArrayList<>(); 
 	
 	@Lob
@@ -76,7 +75,7 @@ public class AuthAccessToken implements Serializable, OAuth2AccessToken {
 	
 	@Override
 	public Map<String, Object> getAdditionalInformation() {
-		return null;
+		return new HashMap<>();
 	}
 
 	@Override
